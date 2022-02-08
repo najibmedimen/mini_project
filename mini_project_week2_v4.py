@@ -22,13 +22,21 @@ Press 0:  Exit App
 Press 1:  View Product Menu
 ==================================
 """
-#print(f'A list of our products is given below: \n{products}\n')
+new_product_sub_menu = '''\n1
+Press 0: To Return to Product Menu
+Press 1: To Suggest Another Product.\n
+'''
+
+from mini_project_functions import file_opener, display_list, file_writer, file_writer2
+products  = file_opener("products.txt")
+couriers = file_opener("couriers.txt")
+
 while True:   
     users = int(input(main_menu))
             
     if users == 0:
             print("\nThanks for Visiting! See You Soon! \n")
-        #    print(f'A list of our products is given below: \n{products}\n')
+            
             break
     elif users ==1:
             while True:
@@ -37,31 +45,28 @@ while True:
                 
                 if product_input == 0:
                     break
+
                 elif product_input == 1:
-                    print("Our product list is given below: ")
-                    for i, product in enumerate(products):
-                        print(f' {i+1}: {product}')
+                    print("Our Product List is Given Below: ")
+                    display_list(products)
                                     
                 elif product_input == 2:
-                    active = 1
-                    while active<= 1:
-                        for index, product in enumerate(products):
-                            print(f' Index: {index+1}  Product: {product}')
+                    active = True
+                    while active:
+                        display_list(products)
                         product_list_length = len(products)
-                        product_input = int(input(f'\nplease Suggest Index Position to Add New Product.\n'))
-                        new_product_suggestion = input(f'\nPlease Suggest a Name for The New Product.\n')
+                        product_input = int(input(f'\n Choose an Index Position to Add New Product.\n'))
+                        new_product_suggestion = input(f'\nSuggest a Name for The New Product.\n')
                         print("\n")
-                        products.insert(product_input, new_product_suggestion)
-                        for index, product in enumerate(products):
-                            print(f' Index: {index+1}  Product: {product}')
-                        further_options = int(input('''\n1
-                        Press 0: To Return to Product Menu
-                        Press 1: To Suggest Another Product.\n'''))
+                        products.insert(product_input-1, new_product_suggestion)
+                        display_list(products)
+
+                        further_options = int(input(new_product_sub_menu))
                         if further_options == 0:
                             break
                         elif further_options == 1:
-                            active = 1
-                        
+                            active 
+
                 elif product_input == 3:
                     print("\nOur product list is given below: \n")
                     for i, product in enumerate(products):
