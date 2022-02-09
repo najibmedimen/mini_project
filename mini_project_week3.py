@@ -4,6 +4,7 @@ from mini_project_functions import print_product_sub_menu, print_couriers_menu, 
 from mini_project_functions import print_product_update_menu, delete_item_from_list, update_listitem_by_name
 from mini_project_functions import print_product_Up_sub_menu, print_product_delete_sub_menu, return_list
 import mini_project_functions as fn
+import csv
 products  = file_opener("products.txt")
 couriers = file_opener("couriers.txt")
 
@@ -164,9 +165,15 @@ while True:
             
             if order_input == 0:
                 break
-            elif product_input == 1:
-                print("Our Product List is Given Below:\n")
-                display_list_by_index(products)
+            
+            elif order_input == 1:
+                print("\nOur Orders List is Given Below:\n")
+                #display_list_by_index(couriers)
+                fn.csv_r_display("orders.csv")
+            
+            elif order_input == 2:
+                
+
 
 
 

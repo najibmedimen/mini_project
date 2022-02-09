@@ -1,3 +1,4 @@
+import csv
 def print_main_menu():
     print( """\n
 Welcome to ChaCha Cafe! \n
@@ -156,6 +157,19 @@ def file_writer(file_w, items_list):
     with open(file_w, 'w') as file:
         for item in items_list:
             file.write(item.strip()+ '\n')
+
+
+
+def csv_r_display(file):
+        with open(file, 'r') as file_object:
+                csv_file = csv.DictReader(file_object)
+                list = []
+                for row in csv_file:
+                        list.append(row)
+                for index, order in enumerate(list):
+                        print(f'order {index+1}: {order}')
+
+
 
 #def file_writer(file, user_input):
 #    with open(file, 'w') as file_object:
