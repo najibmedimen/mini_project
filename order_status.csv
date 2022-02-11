@@ -1,3 +1,5 @@
-customer_name,customer_address,customer_phone,courier,status
-najib khan,15 Ashton place,0789887334,2,preparing
-najaf,15 piccadilly,089767334,1,preparing
+status
+preparing
+ready
+out for delivery
+delivered

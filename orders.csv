@@ -1,3 +1,5 @@
-customer_name,customer_address,customer_phone,courier,status
-najib khan,15 Ashton place,0789887334,2,preparing
-najaf,15 piccadilly,089767334,1,preparing
+customer_name,customer_address,customer_phone,courier,product_order_list,status
+najib khan,15 Ashton place,0789887334,2,"[1,3]",preparing
+najaf,15 piccadilly,089767334,1,[1],Out for Delivery
+rana,12 china town,745277744,7,"[2, 5, 6]",preparing
+liaqat,03 roseville garden,8766545432,4,"[3, 4, 5]",preparing

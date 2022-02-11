@@ -111,6 +111,16 @@ Press 5:  Delete an Existing Order
 =====================================
 """)
 
+def print_order_status_menu():
+    print("""\n
+============ Orders Status ========== \n
+1:  Preparing
+2:  Ready
+3:  Out for Delivery
+4:  Delivered
+=====================================
+""")
+
 
 
 
@@ -208,6 +218,140 @@ def list_couriers(couriers):
     for i, courier in enumerate(couriers):
         print(f' {i+1}: {courier.strip()}')
 
-#def save_products():
+##############################################
+######### Below are CSV Functions ############
+##############################################
 
+#This code is perfect for opening and reading the CSV files
+#######################################################
+def csv_opener(file):
+        with open(file, 'r') as file_object:
+                csv_file = csv.DictReader(file_object)
+                return csv_file
+
+#products = csv_opener('products.csv')
+######################################################
+#It displays the file_object from a read mode csv_opener
+######################################################
+
+def csv_file_displayer(file):
+    list = []
+    for row in file:
+            list.append(row)
+    for index, order in enumerate(list):
+            print(f'order {index+1}: {order}')
+#csv_file_displayer(products)
+#csv_r_display("products.csv")
+
+#####################################################
+# this is csv read only and siaplay function
+#####################################################
+def csv_r_display(file, Product):
+        with open(file, 'r') as file_object:
+                csv_file = csv.DictReader(file_object)
+                list = []
+                a = Product
+                for row in csv_file:
+                        list.append(row)
+                for index, order in enumerate(list):
+                        print(f'{a} {index+1}: {order}')
+#csv_r_display("products.csv")
+######################################################
+# The following code is successfully appending the orders in csv
+# while appending it does not delete anything
+########################################################
+def csv_appender(file,b):
+    with open(file, mode= 'a', newline='') as file_object:
+        writer = csv.writer(file_object, delimiter=',')
+        writer.writerow(b)
+        object = writer
+        return object
+
+#data_row_list = ['cake', 1.5]
+#csv_appender('products.csv', data_row_list)
+########################################################
+
+# open the people.csv and write row from dict
+# it first deletes and thgen writes data
+################################################################
+def dict_writer(file, fieldnames, data_row):
+    file = file
+    fieldnames = fieldnames
+    data_row = data_row
+    with open(file, mode='w') as file:
+        
+        writer = csv.DictWriter(file, fieldnames=fieldnames, delimiter = ',')
+        writer.writeheader()
+        writer.writerow(data_row)
+#fieldnames = ['name','price($)']
+#data_row = {'latte':1.2, 'coke':1.3}
+#dict_writer("products.csv", fieldnames, data_row)
+#####################################################################
+
+# This is perfect dict writer, deletes and overwrites file
+###################################################################
+def func(row_dictslist, fieldnames):
+    with open('people.csv', mode='w', newline = '') as file:
+        writer = csv.DictWriter(file, fieldnames=fieldnames)
+        writer.writeheader()
+        for item in row_dictslist:
+            writer.writerow(item)
+        
+#row_dictslist = [{
+#    'first_name': 'Jan',
+#    'last_name': 'Smith',
+#    'age': 60
+#    }]
+#fieldnames_list = ['first_name', 'last_name', 'age']
+#func(row_dictslist, fieldnames_list)
+
+#########################################################
+#This is perfect csv writer, it deletes existing file and
+#then writes whatever is provided in nested list
+def csv_row_writer(c):
+    with open('people.csv', mode='w', newline = '') as file:
+        writer = csv.writer(file, delimiter=',')
+        for item in c:
+            writer.writerow(item)
+#c= [
+#    ['Joe', 'Bloggs', 40],
+#    ['Jane', 'Smith', 50]
+#    ]       
+#csv_row_writer(c)
+###########################################################
+### This is my proper dict writer##########################
+###########################################################
+def order_update_writer(list,header_names):
+        with open ('orders.csv', 'w', newline='') as file:
+                newfile = csv.DictWriter(file, fieldnames = header_names)
+                newfile.writeheader()
+                for i in range (len(list)):
+                        newfile.writerow(list[i])
+#order_update_writer(give a list of dicts, give a list of header names)
+###########################################################
+############ This perfect csv reader that returns a list
+def csv_reader(file):
+        orders_list = []
+        with open(file, 'r') as file_object:
+                csv_file = csv.DictReader(file_object)
+                for row in csv_file:
+                        orders_list.append(row)
+        return orders_list
+#csv_reader('orders.csv')
+##########order update status #########################
+###########################################################
+def order_status_update(a):
+    if a =='1':
+        status = 'Preparing'
+    elif a =='2':
+        status = 'Ready'
+    elif a =='3':
+        status = 'Out for Delivery'
+    elif a =='4':
+        status = 'Delivered'
+    else:
+        print('Please Enter a Valid Index')
+    return status
+#order_status_update(user_index_input)
+#########################################################
 
