@@ -1,4 +1,5 @@
 
+from subprocess import STARTF_USESHOWWINDOW
 from mini_project_functions import file_opener, display_list_by_index, file_writer, file_writer2, print_products_menu, print_main_menu
 from mini_project_functions import print_product_sub_menu, print_couriers_menu, print_orders_menu
 from mini_project_functions import return_list, delete_item_from_list, update_listitem_by_name
@@ -111,24 +112,22 @@ couriers = file_opener("couriers.txt")
 #                for row in csv_file:
 #                        orders_list.append(row)
 #        return orders_list
-orders_list = fn.csv_reader('orders.csv')
 
+status = ['preparing','ready for collection','out for delivery','delivered']
+orders_list = fn.csv_reader('orders.csv')
 fn.csv_r_display("orders.csv", 'Order')
 user_input1 = int(input('\nPlease Enter The Order Index to be Changed:\n'))
-fn.print_order_status_menu()
-index = int(input('\nPlease Enter The New Index to Update Status:\n'))
-if index == 1:
-        orders_list[user_input1-1]['status'] = 'Preparing'
-elif index == 2:
-        orders_list[user_input1-1]['status'] = 'Ready'
-elif index == 3:
-        orders_list[user_input1-1]['status'] = 'Out for Delivery'
-elif index == 4:
-        orders_list[user_input1-1]['status'] = 'Delivered'
-else:
-        print('Please Enter a Valid Index')
-                                
-#orders_list = order_status_update_input('orders.csv')
+print('\n=========Orders-Status=============\n')
+fn.display_list_by_index(status)
+index = int(input('\nPlease Enter An Index to Update Status:\n'))
+orders_list[user_input1-1]['status'] = status[index-1]
 header_names = ['customer_name','customer_address','customer_phone','courier','product_order_list','status']
 fn.order_update_writer(orders_list,header_names)
-
+name,price($)
+coke,1.10
+coffee,1.50
+tea,1.10
+latte,1.3
+mocha,1.3
+espresso,1.0
+cafeno,1.5

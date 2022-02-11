@@ -170,14 +170,14 @@ def file_writer(file_w, items_list):
 
 
 
-def csv_r_display(file):
-        with open(file, 'r') as file_object:
-                csv_file = csv.DictReader(file_object)
-                list = []
-                for row in csv_file:
-                        list.append(row)
-                for index, order in enumerate(list):
-                        print(f'order {index+1}: {order}')
+#def csv_r_display(file):
+#    list = []
+#    with open(file, 'r') as file_object:
+#        csv_file = csv.DictReader(file_object)
+#        for row in csv_file:
+#            list.append(row)
+#    for index, order in enumerate(list):
+#        print(f' {index+1}: {order}')
 
 
 
@@ -239,22 +239,21 @@ def csv_file_displayer(file):
     for row in file:
             list.append(row)
     for index, order in enumerate(list):
-            print(f'order {index+1}: {order}')
+            print(f' {index+1}: {order}')
 #csv_file_displayer(products)
 #csv_r_display("products.csv")
 
 #####################################################
 # this is csv read only and siaplay function
 #####################################################
-def csv_r_display(file, Product):
-        with open(file, 'r') as file_object:
-                csv_file = csv.DictReader(file_object)
-                list = []
-                a = Product
-                for row in csv_file:
-                        list.append(row)
-                for index, order in enumerate(list):
-                        print(f'{a} {index+1}: {order}')
+def csv_r_display(file):
+    list = []
+    with open(file, 'r') as file_object:
+        csv_file = csv.DictReader(file_object)
+        for row in csv_file:
+            list.append(row)
+    for index, order in enumerate(list):
+        print(f' {index+1}: {order}')
 #csv_r_display("products.csv")
 ######################################################
 # The following code is successfully appending the orders in csv
@@ -321,22 +320,22 @@ def csv_row_writer(c):
 ###########################################################
 ### This is my proper dict writer##########################
 ###########################################################
-def order_update_writer(list,header_names):
-        with open ('orders.csv', 'w', newline='') as file:
-                newfile = csv.DictWriter(file, fieldnames = header_names)
-                newfile.writeheader()
-                for i in range (len(list)):
-                        newfile.writerow(list[i])
-#order_update_writer(give a list of dicts, give a list of header names)
+def dict_writer(file,list,header_names):
+    with open (file, 'w', newline='') as file_object:
+        newfile = csv.DictWriter(file_object, fieldnames = header_names)
+        newfile.writeheader()
+        for i in range (len(list)):
+                newfile.writerow(list[i])
+#order_update_writer(give csv file, give a list of dicts, give a list of header names)
 ###########################################################
 ############ This perfect csv reader that returns a list
 def csv_reader(file):
-        orders_list = []
-        with open(file, 'r') as file_object:
-                csv_file = csv.DictReader(file_object)
-                for row in csv_file:
-                        orders_list.append(row)
-        return orders_list
+    orders_list = []
+    with open(file, 'r') as file_object:
+        csv_file = csv.DictReader(file_object)
+        for row in csv_file:
+                orders_list.append(row)
+    return orders_list
 #csv_reader('orders.csv')
 ##########order update status #########################
 ###########################################################
