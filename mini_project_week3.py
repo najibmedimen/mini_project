@@ -26,17 +26,19 @@ while True:
             if product_input == 0:
                 break
             elif product_input == 1:
-                print("Our Product List is Given Below:\n")
-                fn.csv_r_display("products.csv", "Product")
+                print('\nOur Products are Given Below:\n')
+                fn.csv_r_display('products.csv')
                                 
             elif product_input == 2:
                 while True:
-                    fn.csv_r_display("products.csv", "Product")
+                    print('\nOur Products are Given Below:\n')
+                    fn.csv_r_display('products.csv')
                     new_product_name = input(f'\nSuggest a Name for The New Product.\n')
                     product_price = float(input(f'\n Please Enter the Price of New Product.\n'))
                     data_row_list = [new_product_name,product_price]
                     fn.csv_appender('products.csv', data_row_list)
-                    fn.csv_r_display("products.csv", "Product")
+                    print('\nOur Products are Given Below:\n')
+                    fn.csv_r_display('products.csv')
                     print_product_sub_menu()
                     further_options = int(input())
                     if further_options == 0:
@@ -65,7 +67,7 @@ while True:
                     print('\nOur Products are Given Below:\n')
                     fn.csv_r_display('products.csv')
                     products_list = fn.csv_reader('products.csv')
-                    delete_input = int(input('\nPlease Choose and Index to delete a Product\n'))
+                    delete_input = int(input('\nPlease Choose an Index to delete a Product:\n'))
                     del products_list[delete_input-1]
                     header_names = ['name','price($)']
                     fn.dict_writer('products.csv',products_list,header_names)
@@ -83,17 +85,19 @@ while True:
                 break
 
             elif courier_input == 1:
-                print("Our Couriers List is Given Below:\n")
-                fn.csv_r_display("couriers.csv", "Courier")
+                print('\nOur Couriers are Given Below:\n')
+                fn.csv_r_display('couriers.csv')
 
             elif courier_input == 2:
                 while True:
-                    fn.csv_r_display("couriers.csv", "Courier")
+                    print('\nOur Couriers are Given Below:\n')
+                    fn.csv_r_display('couriers.csv')
                     new_courier_name = input(f'\nSuggest a Name for The New Courier.\n')
                     courier_phone_number = int(input(f'\n Enter Courier Phone Number.\n'))
                     data_row_list = [new_courier_name,courier_phone_number]
                     fn.csv_appender('couriers.csv', data_row_list)
-                    fn.csv_r_display("couriers.csv", "Courier")
+                    print('\nOur Couriers are Given Below:\n')
+                    fn.csv_r_display('couriers.csv')
                     fn.print_courier_sub_menu()
                     further_options = int(input())
                     if further_options == 0:
@@ -124,7 +128,7 @@ while True:
                     couriers_list = fn.csv_reader('couriers.csv')
                     delete_input = int(input('\nPlease Choose and Index to delete a Courier\n'))
                     del couriers_list[delete_input-1]
-                    header_names = ['name','price($)']
+                    header_names = ['name','phone']
                     fn.dict_writer('couriers.csv',couriers_list,header_names)
                     fn.print_courier_delete_sub_menu()
                     further_options = int(input())
@@ -140,41 +144,79 @@ while True:
                 break
             
             elif order_input == 1:
-                print("\nOur Orders List is Given Below:\n")
-                #display_list_by_index(couriers)
-                fn.csv_r_display("orders.csv", 'Order')
+                print('\nOur Current Orders are Given Below:\n')
+                fn.csv_r_display('orders.csv')
             
             elif order_input == 2:
                 new_order = {}
                 customer_name = input(f'\nPlease Enter Customer Name:\n')
                 customer_address = input(f'\nPlease Enter Customer Address:\n')
                 customer_phone = int(input(f'\nPlease Enter Customer Phone Number:\n'))
-                fn.csv_r_display("products.csv", "Product Index")
+                print('\nOur Products are Given Below:\n')
+                fn.csv_r_display('products.csv')
                 list = str(input ("Please Enter Product Indices Seaparated By Commas:\n"))
                 List = list.split(',')
                 product_order_list =[]
                 for item in List:
                     product_order_list.append(int(item))
                 print(product_order_list)
-                fn.csv_r_display("couriers.csv", "Courier Index")
+                print('\nOur Couriers are Given Below:\n')
+                fn.csv_r_display('couriers.csv')
                 courier_index = int(input(f'\n Please Select A Courier Index:\n'))
                 order_status = "preparing"
                 data_row_list = [customer_name,customer_address,customer_phone,courier_index,product_order_list,order_status]
                 fn.csv_appender('orders.csv', data_row_list)
-                fn.csv_r_display("orders.csv", "Order Index")
+                print('\nOur Current Orders are Given Below:\n')
+                fn.csv_r_display('orders.csv')
 
             elif order_input == 3:
                 status = ['preparing','ready for collection','out for delivery','delivered']
                 orders_list = fn.csv_reader('orders.csv')
-                fn.csv_r_display("orders.csv", 'Order')
-                user_input1 = int(input('\nPlease Enter The Order Index to be Changed:\n'))
+                print('\nOur Current Orders are Given Below:\n')
+                fn.csv_r_display('orders.csv')
+                user_input = int(input('\nPlease Enter The Order Index to be Changed:\n'))
                 print('\n=========Orders-Status=============\n')
                 fn.display_list_by_index(status)
                 index = int(input('\nPlease Enter An Index to Update Status:\n'))
-                orders_list[user_input1-1]['status'] = status[index-1]
+                orders_list[user_input-1]['status'] = status[index-1]
                 header_names = ['customer_name','customer_address','customer_phone','courier','product_order_list','status']
                 fn.dict_writer('orders.csv',orders_list,header_names)
-                
+
+            elif order_input == 4:
+                print('\nOur Current Orders are Given Below:\n')
+                fn.csv_r_display('orders.csv')
+                user_input = int(input('\nChoose an Index to Update an Order:\n'))
+                orders_list = fn.csv_reader('orders.csv')
+                for key, value in orders_list[user_input-1].items():
+                        key_input = input(f'\nPlease Insert New Value for {key}:\n')
+                        if key_input:
+                            orders_list[user_input-1][key] = key_input
+                header_names = ['customer_name','customer_address','customer_phone','courier','product_order_list','status']
+                fn.dict_writer('orders.csv',orders_list,header_names)
+                fn.print_order_Up_sub_menu()
+                further_options = int(input())
+                if further_options == 0:
+                    break
+            
+            elif order_input == 5:
+                while True:
+                    print('\nOur Current Orders are Given Below:\n')
+                    fn.csv_r_display('orders.csv')
+                    orders_list = fn.csv_reader('orders.csv')
+                    delete_input = int(input('\nChoose an Index to delete an Order\n'))
+                    del orders_list[delete_input-1]
+                    header_names = ['customer_name','customer_address','customer_phone','courier','product_order_list','status']
+                    fn.dict_writer('orders.csv',orders_list,header_names)
+                    fn.print_order_Up_sub_menu()
+                    further_options = int(input())
+                    if further_options == 0:
+                        break  
+
+
+
+
+
+
 #customer_name,customer_address,customer_phone,courier,product_order_list,status
 #najib khan,15 Ashton place,0789887334,2,[1,2,3],preparing
 #najaf,15 piccadilly,089767334,1,[1],preparing

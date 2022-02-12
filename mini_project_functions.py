@@ -121,6 +121,15 @@ def print_order_status_menu():
 =====================================
 """)
 
+def print_order_Up_sub_menu():
+    print("""\n
+More Options for Order Update sub-Menu: \n
+======= Order Update Sub-Menu ====== \n
+Press 0:  Return to Orders Menu
+Press 1:  Update Another Order
+=====================================\n
+""")
+
 
 
 
