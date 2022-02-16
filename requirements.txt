@@ -1,1 +1,6 @@
-pyspice == V1.5.0
+cffi
+cryptography
+pycparser
+PyMySQL
+python-dotenv
+six
