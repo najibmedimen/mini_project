@@ -45,9 +45,8 @@ def print_product_update_menu():
     print(f'''\n
 Select an Option From Product Update-Menu: \n
 ======== Product Update-Menu ======= \n
-Press 1: Update Product & Price
-Press 2: Update Product
-Press 3: Update Price
+Press 1:  Update Product Index
+Press 2:  Update Product Name
 =====================================\n
 ''')
 
@@ -89,6 +88,26 @@ Press 0:  Return to Courier Menu
 Press 1:  Update Another Courier
 =====================================\n
 """)
+
+def print_product_update_menu():
+    print(f'''\n
+Select an Option From Product Update-Menu: \n
+======== Product Update-Menu ======= \n
+Press 1: Update Product & Price
+Press 2: Update Product
+Press 3: Update Price
+=====================================\n
+''')
+
+def print_courier_update_menu():
+    print(f'''\n
+Select an Option From Courier Update-Menu: \n
+======== Courier Update-Menu ======= \n
+Press 1: Update Courier & Phone
+Press 2: Update Courier
+Press 3: Update Phone
+=====================================\n
+''')
 
 def print_courier_delete_sub_menu():
     print("""\n

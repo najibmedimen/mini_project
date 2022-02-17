@@ -113,21 +113,13 @@ couriers = file_opener("couriers.txt")
 #                        orders_list.append(row)
 #        return orders_list
 
-status = ['preparing','ready for collection','out for delivery','delivered']
-orders_list = fn.csv_reader('orders.csv')
-fn.csv_r_display("orders.csv", 'Order')
-user_input1 = int(input('\nPlease Enter The Order Index to be Changed:\n'))
-print('\n=========Orders-Status=============\n')
-fn.display_list_by_index(status)
-index = int(input('\nPlease Enter An Index to Update Status:\n'))
-orders_list[user_input1-1]['status'] = status[index-1]
-header_names = ['customer_name','customer_address','customer_phone','courier','product_order_list','status']
-fn.order_update_writer(orders_list,header_names)
-name,price($)
-coke,1.10
-coffee,1.50
-tea,1.10
-latte,1.3
-mocha,1.3
-espresso,1.0
-cafeno,1.5
+
+#Products
+#name,price($)
+#coke,1.10
+#coffee,1.50
+#tea,1.10
+#latte,1.3
+#mocha,1.3
+#espresso,1.0
+#cafeno,1.5
