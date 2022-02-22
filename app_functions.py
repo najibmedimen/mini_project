@@ -1,4 +1,5 @@
 import csv
+from prettytable import PrettyTable
 def print_main_menu():
     print( """\n
 Welcome to ChaCha Cafe! \n
@@ -123,7 +124,7 @@ def print_orders_menu():
 Please Select From Options for The Orders Menu: \n
 ============ Orders Menu ========== \n
 Press 0:  Return to Main Menu
-Press 1:  Look at Orders Dictionary
+Press 1:  Look at Our Orders 
 Press 2:  Create a New Order
 Press 3:  Update Order Status
 Press 4:  Update an Order

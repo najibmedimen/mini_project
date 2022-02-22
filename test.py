@@ -4,6 +4,7 @@ from dotenv import load_dotenv
 import query_functions as fq
 import app_functions as fn
 import json
+from prettytable import PrettyTable
 
 # Load environment variables from .env file
 load_dotenv()
@@ -199,44 +200,79 @@ database = os.environ.get("mysql_db")
 #
 
 
-#sql = "INSERT INTO products_on_orders (order_id, product_id) VALUES (%s, %s)"
-#val = [
-#(3, 5),
-#(3, 5),
-#(3, 5)
-#]
-#cursor.executemany(sql, val)
+#x = PrettyTable()
+#x.field_names = ["product_id", "name", "price$"]
+#x.add_row([1,"coke",1.30])
+#
+#print(x)
+def display_orders():
+    connection = pymysql.connect(
+    host = host,
+    user =user,
+    password =password,
+    database = database
+    )
+    x = PrettyTable()
+    
+    cursor = connection.cursor()
+   
+    cursor.execute("\
+    SELECT orders.order_id, customers.name, customers.address, customers.phone, couriers.courier_id, order_status.name, products_on_orders.product_id \
+    FROM orders \
+    JOIN customers\
+    ON orders.customer_id = customers.customer_id\
+    JOIN couriers\
+    ON orders.courier_id = couriers.courier_id\
+    JOIN products_on_orders\
+    ON orders.order_id = products_on_orders.order_id\
+    JOIN order_status\
+    ON orders.status_id = order_status.status_id\
+    order by orders.order_id ASC\
+    ")
+
+    myresult = cursor.fetchall()
+   
+    
+    fields = ["order_id", "customer_name", "customer_address", "customer_phone", "courier_id", "order_status", "product_id"]
+    x.field_names = fields
+        
+    for row in myresult:
+        x.add_row(row)
+    print(x)
+
+    connection.commit()
+    cursor.close()  
+    connection.close()
+
+display_orders()
 
 
-
-
-# PRINT orders with their IDs
-
-
-#GET user input for order ID
-
-
-#GET user input for customer name
-
-
-# GET user input for customer address
-
-
-# GET user input for customer phone number
-
-
-# PRINT products
-
-#GET user inputs for comma-separated list of product IDs
-CONVERT above user input to list of integers
-GET all couriers from couriers table
-PRINT couriers
-GET user input for courier ID
-UPDATE order in orders table
-
-
-
-
+#def display_items(fields, query):
+#    connection = pymysql.connect(
+#    host = host,
+#    user =user,
+#    password =password,
+#    database = database
+#    )
+#    x = PrettyTable()
+#    cursor = connection.cursor()
+#    cursor.execute(query)
+#    
+#    myresult = cursor.fetchall()
+#
+#    x.field_names = fields
+#        
+#    for row in myresult:
+#        x.add_row(row)
+#    print(x)
+#
+#    connection.commit()
+#    cursor.close()
+#    connection.close()
+#
+#fields = ["product_id", "name", "price$"]
+#query =  "SELECT * FROM products"  
+#display_items(fields, query)
 
 
 

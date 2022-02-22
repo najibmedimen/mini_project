@@ -1,6 +1,7 @@
 
 import app_functions as fn
 import query_functions as fq
+from prettytable import PrettyTable
 import csv
 
 
@@ -24,23 +25,24 @@ while True:
                 break
 
             elif product_input == 1:
+
                 print('\nOur Products are Given Below:\n')
-                fq.display_products(list = print)
-                                
+                fq.display_products()
+                                                                
             elif product_input == 2:
                 while True:
                     print('\nOur Products are Given Below:\n')
-                    fq.display_products(list = print)
+                    fq.display_products()
                     
-                    new_product_name = input(f'\nSuggest a Name for The New Product.\n')
-                    product_price = float(input(f'\n Please Enter the Price for New Product.\n'))
+                    new_product_name = input(f'\nSuggest a Name for The New Product:\n')
+                    product_price = float(input(f'\n Please Enter the Price for New Product:\n'))
                     
                     query = "INSERT INTO products (name, price$) VALUES (%s, %s)"
                     values = (new_product_name, product_price)
                     fq.execute_query(query, values)
 
                     print('\nOur Products are Given Below:\n')
-                    fq.display_products(list = print)  
+                    fq.display_products()  
 
                     fn.print_product_sub_menu()
                     further_options = int(input())
@@ -51,7 +53,7 @@ while True:
                 
                 while True:
                     print('\nOur Products are Given Below:\n')
-                    fq.display_products(list = print)
+                    fq.display_products()
                     
                     user_input = input('\nChoose an Index to Update a Porduct:\n')
                     product_name = input(f'\nSuggest a New Name for The Product.\n')
@@ -75,7 +77,7 @@ while True:
                             pass
                     
                     print('\nOur Products are Given Below:\n')
-                    fq.display_products(list = print)
+                    fq.display_products()
 
                     fn.print_product_Up_sub_menu()
                     further_options = int(input())
@@ -85,14 +87,14 @@ while True:
             elif product_input == 4:
                 while True:
                     print('\nOur Products are Given Below:\n')
-                    fq.display_products(list = print)
+                    fq.display_products()
                     
                     delete_input = int(input('\nPlease Choose an Index to delete a Product:\n'))
                     query = f'DELETE FROM products WHERE product_id = "{delete_input}"'
                     fq.execute_query(query)
 
                     print('\nOur Products are Given Below:\n')
-                    fq.display_products(list = print)  
+                    fq.display_products()  
 
                     fn.print_product_delete_sub_menu()
                     further_options = int(input())
@@ -110,12 +112,12 @@ while True:
 
             elif courier_input == 1:
                 print('\nOur Couriers are Given Below:\n')
-                fq.display_couriers(list = print)
-
+                fq.display_couriers()
+                
             elif courier_input == 2:
                 while True:
                     print('\nOur Couriers are Given Below:\n')
-                    fq.display_couriers(list = print)
+                    fq.display_couriers()
 
                     new_courier_name = input(f'\nSuggest a Name for The New Courier.\n')
                     courier_phone_number = input(f'\n Enter Courier Phone Number.\n')
@@ -124,7 +126,7 @@ while True:
                     fq.execute_query(query, values)
 
                     print('\nOur Couriers are Given Below:\n')
-                    fq.display_couriers(list = print)
+                    fq.display_couriers()
                     
                     fn.print_courier_sub_menu()
                     further_options = int(input())
@@ -134,7 +136,7 @@ while True:
             elif courier_input == 3:
                 while True:
                     print('\nOur Couriers are Given Below:\n')
-                    fq.display_couriers(list = print)
+                    fq.display_couriers()
 
                     user_input = input('\nChoose an Index to Update a Courier:\n')
                     courier_name = input(f'\nSuggest a New Name for The Courier.\n')
@@ -158,7 +160,7 @@ while True:
                             pass
                     
                     print('\nOur Couriers are Given Below:\n')
-                    fq.display_couriers(list = print)
+                    fq.display_couriers()
 
                     fn.print_courier_Up_sub_menu()
                     further_options = int(input())
@@ -168,14 +170,14 @@ while True:
             elif courier_input == 4:
                 while True:
                     print('\nOur Couriers are Given Below:\n')
-                    fq.display_couriers(list = print)
+                    fq.display_couriers()
                     
                     delete_input = int(input('\nPlease Choose an Index to delete a Courier:\n'))
                     query = f'DELETE FROM couriers WHERE courier_id = "{delete_input}"'
                     fq.execute_query(query)
 
                     print('\nOur Couriers are Given Below:\n')
-                    fq.display_couriers(list = print) 
+                    fq.display_couriers()
 
                     fn.print_courier_delete_sub_menu()
                     further_options = int(input())
@@ -193,6 +195,7 @@ while True:
             elif order_input == 1:
                 print('\nOur Current Orders are Given Below:\n')
                 fq.display_orders()
+                
             
             elif order_input == 2:
                 while True:
@@ -207,11 +210,11 @@ while True:
     
                     customer_id = fq.return_customer_id(customer_phone)
     
-                    fq.display_products(list = print)
+                    fq.display_products()
     
                     list_of_products = fq.product_user_list()
     
-                    fq.display_couriers(list = print)
+                    fq.display_couriers()
     
                     courier_id = int(input("Please Enter The Courier ID:"))
     
@@ -227,6 +230,8 @@ while True:
                     for i in list_of_products:
                         values3.append((order_id, i))
                     fq.execute_multiple_values(query3, values3)
+                    
+                    fq.display_orders()
 
                     fn.print_new_order_menu()
                     further_options = int(input())
@@ -245,6 +250,8 @@ while True:
                                     
                     query = f'UPDATE orders SET status_id = "{status_input}" WHERE order_id = "{order_input}"'
                     fq.execute_query(query)
+
+                    fq.display_orders()
 
                     fn.print_order_status_sub_menu()
                     further_options = int(input())
@@ -267,10 +274,10 @@ while True:
                         phone = "{phone}" WHERE customer_id = "{customer_id}"'
                     fq.execute_query(query1)
     
-                    fq.display_products(list = print)
+                    fq.display_products()
                     list_of_products = fq.product_user_list()
     
-                    fq.display_couriers(list = print)
+                    fq.display_couriers()
                     courier_id = int(input("\nPlease Enter The Courier ID:\n"))
     
                     query2 = f'UPDATE orders SET customer_id = "{customer_id}", courier_id = "{courier_id}"\
@@ -284,7 +291,9 @@ while True:
                     values = []
                     for i in list_of_products:
                         values.append(( order_id_input, i))
-                    fq.execute_multiple_values(query4, values) 
+                    fq.execute_multiple_values(query4, values)
+
+                    fq.display_orders() 
 
                     fn.print_order_Up_sub_menu()
                     further_options = int(input())
@@ -296,7 +305,7 @@ while True:
                 while True:
 
                     fq.display_orders()
-                    order_id_input = int(input("\nPlease enter an order_id to update an order:\n"))
+                    order_id_input = int(input("\nPlease enter an order_id to Delete an order:\n"))
     
                     query = f'DELETE FROM orders WHERE order_id = "{order_id_input}"'
                     fq.execute_query(query)
@@ -308,7 +317,6 @@ while True:
                     if further_options == 0:
                         break
                 
-              
 
 
 
