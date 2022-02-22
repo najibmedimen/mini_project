@@ -25,12 +25,12 @@ while True:
 
             elif product_input == 1:
                 print('\nOur Products are Given Below:\n')
-                fq.display_products()
+                fq.display_products(list = print)
                                 
             elif product_input == 2:
                 while True:
                     print('\nOur Products are Given Below:\n')
-                    fq.display_products()
+                    fq.display_products(list = print)
                     
                     new_product_name = input(f'\nSuggest a Name for The New Product.\n')
                     product_price = float(input(f'\n Please Enter the Price for New Product.\n'))
@@ -40,7 +40,7 @@ while True:
                     fq.execute_query(query, values)
 
                     print('\nOur Products are Given Below:\n')
-                    fq.display_products()  
+                    fq.display_products(list = print)  
 
                     fn.print_product_sub_menu()
                     further_options = int(input())
@@ -51,7 +51,7 @@ while True:
                 
                 while True:
                     print('\nOur Products are Given Below:\n')
-                    fq.display_products()
+                    fq.display_products(list = print)
                     
                     user_input = input('\nChoose an Index to Update a Porduct:\n')
                     product_name = input(f'\nSuggest a New Name for The Product.\n')
@@ -60,22 +60,22 @@ while True:
                         if product_name:
                             if product_price:
                                 query = f'UPDATE products SET name = "{product_name}", price$ = "{product_price}" \
-                                        WHERE id = "{user_input}"'
+                                        WHERE product_id = "{user_input}"'
                                 fq.execute_query(query)
                             
                             else:
-                                query = f'UPDATE products SET name = "{product_name}" WHERE id = "{user_input}"' 
+                                query = f'UPDATE products SET name = "{product_name}" WHERE product_id = "{user_input}"' 
                                 fq.execute_query(query)
                         
                         elif product_price:
-                            query = f'UPDATE products SET price$ = "{product_price}" WHERE id = "{user_input}"'
+                            query = f'UPDATE products SET price$ = "{product_price}" WHERE product_id = "{user_input}"'
                             fq.execute_query(query)
                         
                         else:
                             pass
                     
                     print('\nOur Products are Given Below:\n')
-                    fq.display_products()
+                    fq.display_products(list = print)
 
                     fn.print_product_Up_sub_menu()
                     further_options = int(input())
@@ -85,14 +85,14 @@ while True:
             elif product_input == 4:
                 while True:
                     print('\nOur Products are Given Below:\n')
-                    fq.display_products()
+                    fq.display_products(list = print)
                     
                     delete_input = int(input('\nPlease Choose an Index to delete a Product:\n'))
-                    query = f'DELETE FROM products WHERE id = "{delete_input}"'
+                    query = f'DELETE FROM products WHERE product_id = "{delete_input}"'
                     fq.execute_query(query)
 
                     print('\nOur Products are Given Below:\n')
-                    fq.display_products()  
+                    fq.display_products(list = print)  
 
                     fn.print_product_delete_sub_menu()
                     further_options = int(input())
@@ -110,12 +110,12 @@ while True:
 
             elif courier_input == 1:
                 print('\nOur Couriers are Given Below:\n')
-                fq.display_couriers()
+                fq.display_couriers(list = print)
 
             elif courier_input == 2:
                 while True:
                     print('\nOur Couriers are Given Below:\n')
-                    fq.display_couriers()
+                    fq.display_couriers(list = print)
 
                     new_courier_name = input(f'\nSuggest a Name for The New Courier.\n')
                     courier_phone_number = input(f'\n Enter Courier Phone Number.\n')
@@ -124,7 +124,7 @@ while True:
                     fq.execute_query(query, values)
 
                     print('\nOur Couriers are Given Below:\n')
-                    fq.display_couriers()
+                    fq.display_couriers(list = print)
                     
                     fn.print_courier_sub_menu()
                     further_options = int(input())
@@ -134,7 +134,7 @@ while True:
             elif courier_input == 3:
                 while True:
                     print('\nOur Couriers are Given Below:\n')
-                    fq.display_couriers()
+                    fq.display_couriers(list = print)
 
                     user_input = input('\nChoose an Index to Update a Courier:\n')
                     courier_name = input(f'\nSuggest a New Name for The Courier.\n')
@@ -143,22 +143,22 @@ while True:
                         if courier_name:
                             if courier_phone:
                                 query = f'UPDATE couriers SET name = "{courier_name}", phone = "{courier_phone}" \
-                                        WHERE id = "{user_input}"'
+                                        WHERE courier_id = "{user_input}"'
                                 fq.execute_query(query)
                             
                             else:
-                                query = f'UPDATE couriers SET name = "{courier_name}" WHERE id = "{user_input}"' 
+                                query = f'UPDATE couriers SET name = "{courier_name}" WHERE courier_id = "{user_input}"' 
                                 fq.execute_query(query)
                         
                         elif courier_phone:
-                            query = f'UPDATE couriers SET phone = "{courier_phone}" WHERE id = "{user_input}"'
+                            query = f'UPDATE couriers SET phone = "{courier_phone}" WHERE courier_id = "{user_input}"'
                             fq.execute_query(query)
                         
                         else:
                             pass
                     
                     print('\nOur Couriers are Given Below:\n')
-                    fq.display_couriers()
+                    fq.display_couriers(list = print)
 
                     fn.print_courier_Up_sub_menu()
                     further_options = int(input())
@@ -168,14 +168,14 @@ while True:
             elif courier_input == 4:
                 while True:
                     print('\nOur Couriers are Given Below:\n')
-                    fq.display_couriers()
+                    fq.display_couriers(list = print)
                     
                     delete_input = int(input('\nPlease Choose an Index to delete a Courier:\n'))
-                    query = f'DELETE FROM couriers WHERE id = "{delete_input}"'
+                    query = f'DELETE FROM couriers WHERE courier_id = "{delete_input}"'
                     fq.execute_query(query)
 
                     print('\nOur Couriers are Given Below:\n')
-                    fq.display_couriers() 
+                    fq.display_couriers(list = print) 
 
                     fn.print_courier_delete_sub_menu()
                     further_options = int(input())
@@ -192,72 +192,123 @@ while True:
             
             elif order_input == 1:
                 print('\nOur Current Orders are Given Below:\n')
-                fn.csv_r_display('orders.csv')
+                fq.display_orders()
             
             elif order_input == 2:
-                new_order = {}
-                customer_name = input(f'\nPlease Enter Customer Name:\n')
-                customer_address = input(f'\nPlease Enter Customer Address:\n')
-                customer_phone = int(input(f'\nPlease Enter Customer Phone Number:\n'))
-                print('\nOur Products are Given Below:\n')
-                fn.csv_r_display('products.csv')
-                list = str(input ("Please Enter Product Indices Seaparated By Commas:\n"))
-                List = list.split(',')
-                product_order_list =[]
-                for item in List:
-                    product_order_list.append(int(item))
-                print(product_order_list)
-                print('\nOur Couriers are Given Below:\n')
-                fn.csv_r_display('couriers.csv')
-                courier_index = int(input(f'\n Please Select A Courier Index:\n'))
-                order_status = "preparing"
-                data_row_list = [customer_name,customer_address,customer_phone,courier_index,product_order_list,order_status]
-                fn.csv_appender('orders.csv', data_row_list)
-                print('\nOur Current Orders are Given Below:\n')
-                fn.csv_r_display('orders.csv')
+                while True:
+
+                    customer_name = input(f'\nPlease Enter Customer Name:\n')
+                    customer_address = input(f'\nPlease Enter Customer Address:\n')
+                    customer_phone = input(f'\nPlease Enter Customer Phone Number:\n')
+                    
+                    query1 = "INSERT INTO customers (name, address, phone) VALUES (%s, %s, %s)"
+                    values1 = (customer_name, customer_address,customer_phone)
+                    fq.execute_query(query1, values1)
+    
+                    customer_id = fq.return_customer_id(customer_phone)
+    
+                    fq.display_products(list = print)
+    
+                    list_of_products = fq.product_user_list()
+    
+                    fq.display_couriers(list = print)
+    
+                    courier_id = int(input("Please Enter The Courier ID:"))
+    
+                    status_id = 1
+    
+                    query2 = "INSERT INTO orders (customer_id, courier_id, status_id) VALUES (%s, %s, %s)"
+                    values2 = (customer_id, courier_id, status_id)
+                    order_id = fq.execute_query(query2, values2)
+    
+                    query3 = "INSERT INTO products_on_orders (order_id, product_id) VALUES (%s, %s)"
+                    #order_id = fq.return_order_id(customer_id)
+                    values3 = []
+                    for i in list_of_products:
+                        values3.append((order_id, i))
+                    fq.execute_multiple_values(query3, values3)
+
+                    fn.print_new_order_menu()
+                    further_options = int(input())
+                    if further_options == 0:
+                        break
+
 
             elif order_input == 3:
+                while True:
                 
-                orders_list = fn.csv_reader('orders.csv')
-                print('\nOur Current Orders are Given Below:\n')
-                fn.csv_r_display('orders.csv')
-                user_input = int(input('\nPlease Enter The Order Index to be Changed:\n'))
-                print('\n=========Orders-Status=============\n')
-                fn.display_list_by_index(status)
-                index = int(input('\nPlease Enter An Index to Update Status:\n'))
-                orders_list[user_input-1]['status'] = status[index-1]
-                header_names = ['customer_name','customer_address','customer_phone','courier','product_order_list','status']
-                fn.dict_writer('orders.csv',orders_list,header_names)
+                    fq.display_orders()
+                    order_input = int(input("\nPlease enter an order_id to update status:\n"))
+                    
+                    fq.display_status(list = print)
+                    status_input = int(input("\nPlease enter status_id to update status:\n"))
+                                    
+                    query = f'UPDATE orders SET status_id = "{status_input}" WHERE order_id = "{order_input}"'
+                    fq.execute_query(query)
+
+                    fn.print_order_status_sub_menu()
+                    further_options = int(input())
+                    if further_options == 0:
+                        break
+                
 
             elif order_input == 4:
-                print('\nOur Current Orders are Given Below:\n')
-                fn.csv_r_display('orders.csv')
-                user_input = int(input('\nChoose an Index to Update an Order:\n'))
-                orders_list = fn.csv_reader('orders.csv')
-                for key, value in orders_list[user_input-1].items():
-                        key_input = input(f'\nPlease Insert New Value for {key}:\n')
-                        if key_input:
-                            orders_list[user_input-1][key] = key_input
-                header_names = ['customer_name','customer_address','customer_phone','courier','product_order_list','status']
-                fn.dict_writer('orders.csv',orders_list,header_names)
-                fn.print_order_Up_sub_menu()
-                further_options = int(input())
-                if further_options == 0:
-                    break
-            
-            elif order_input == 5:
                 while True:
-                    print('\nOur Current Orders are Given Below:\n')
-                    fn.csv_r_display('orders.csv')
-                    orders_list = fn.csv_reader('orders.csv')
-                    delete_input = int(input('\nChoose an Index to delete an Order\n'))
-                    del orders_list[delete_input-1]
-                    header_names = ['customer_name','customer_address','customer_phone','courier','product_order_list','status']
-                    fn.dict_writer('orders.csv',orders_list,header_names)
+
+                    fq.display_orders()
+                    order_id_input = int(input("\nPlease enter an order_id to update an order:\n"))
+                    customer_id = fq.return_customer_id_from_orders(order_id_input)
+    
+                    name = input(f'\nPlease Enter Customer Name:\n')
+                    address = input(f'\nPlease Enter Customer Address:\n')
+                    phone = input(f'\nPlease Enter Customer Phone Number:\n')
+    
+                    query1 = f'UPDATE customers SET name = "{name}", address = "{address}", \
+                        phone = "{phone}" WHERE customer_id = "{customer_id}"'
+                    fq.execute_query(query1)
+    
+                    fq.display_products(list = print)
+                    list_of_products = fq.product_user_list()
+    
+                    fq.display_couriers(list = print)
+                    courier_id = int(input("\nPlease Enter The Courier ID:\n"))
+    
+                    query2 = f'UPDATE orders SET customer_id = "{customer_id}", courier_id = "{courier_id}"\
+                        WHERE order_id = "{order_id_input}"'
+                    fq.execute_query(query2)
+                    
+                    query3 = f'DELETE FROM products_on_orders WHERE order_id = "{order_id_input}"'
+                    fq.execute_query(query3)
+    
+                    query4 = "INSERT INTO products_on_orders (order_id, product_id) VALUES (%s, %s)"
+                    values = []
+                    for i in list_of_products:
+                        values.append(( order_id_input, i))
+                    fq.execute_multiple_values(query4, values) 
+
                     fn.print_order_Up_sub_menu()
                     further_options = int(input())
                     if further_options == 0:
-                        break  
+                        break    
+
+            
+            elif order_input == 5:
+                while True:
+
+                    fq.display_orders()
+                    order_id_input = int(input("\nPlease enter an order_id to update an order:\n"))
+    
+                    query = f'DELETE FROM orders WHERE order_id = "{order_id_input}"'
+                    fq.execute_query(query)
+    
+                    fq.display_orders()
+
+                    fn.print_order_delete_sub_menu()
+                    further_options = int(input())
+                    if further_options == 0:
+                        break
+                
+              
 
 
 

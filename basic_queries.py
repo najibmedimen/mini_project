@@ -27,9 +27,13 @@ cursor = connection.cursor()
 #cursor.execute("CREATE DATABASE cafe_ap")
 
 #########################create tables #######################################
-#cursor.execute("CREATE TABLE products (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) Not Null, price$ DECIMAL(3,2) Not Null)")
-#cursor.execute("CREATE TABLE couriers (id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) Not Null, phone INT Not Null)")
-
+#cursor.execute("CREATE TABLE products (product_id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) Not Null, price$ DECIMAL(3,2) Not Null)")
+#cursor.execute("CREATE TABLE couriers (courier_id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) Not Null, phone VARCHAR(255) Not Null)")
+#cursor.execute("CREATE TABLE order_status (status_id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) Not Null)")
+#cursor.execute("CREATE TABLE customers (customer_id INT AUTO_INCREMENT PRIMARY KEY, name VARCHAR(255) Not Null, address VARCHAR(255) Not Null, phone INT Not Null)")
+#cursor.execute("CREATE TABLE orders (order_id INT AUTO_INCREMENT PRIMARY KEY, customer_id INT, courier_id INT, status_id int, FOREIGN KEY (customer_id) REFERENCES customers(customer_id) ON DELETE SET NULL, FOREIGN KEY (courier_id) REFERENCES couriers(courier_id) ON DELETE SET NULL, FOREIGN KEY (status_id) REFERENCES order_status(status_id) ON DELETE SET NULL)")
+#cursor.execute("CREATE TABLE order_status (order_status_id INT AUTO_INCREMENT PRIMARY KEY, order_id INT, status_id INT, FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE SET NULL, FOREIGN KEY (status_id) REFERENCES status(status_id) ON DELETE SET NULL)")
+#cursor.execute("CREATE TABLE products_on_orders (id INT AUTO_INCREMENT PRIMARY KEY, order_id INT, product_id INT, FOREIGN KEY (order_id) REFERENCES orders(order_id) ON DELETE SET NULL, FOREIGN KEY (product_id) REFERENCES products(product_id) ON DELETE SET NULL)")
 #################Drop Table ############################
 #sql = "DROP TABLE products"
 #cursor.execute(sql)
@@ -46,19 +50,59 @@ cursor = connection.cursor()
 #]
 #cursor.executemany(sql, val)
 
-########################Insert multiple records ######################
-#################Insert multiple records ######################
+#######################Insert multiple records ######################
 #sql = "INSERT INTO couriers (name, phone) VALUES (%s, %s)"
 #val = [
-#('jane', '08766546536'),
-#('raj', '08766565456'),
-#('rashid', '07677676767'),
-#('garry', '07655432345'),
-#('william', '07677676767'),
-#('james', '07899654567')
+#('deliveroo', '07766546536'),
+#('ubereat', '07766565456'),
+#('justeat', '07677676767'),
+#('tishtosh', '07655432345')
 #]
 #cursor.executemany(sql, val)
 
+########################Insert multiple records ######################
+#sql = "INSERT INTO order_status (name) VALUES (%s)"
+#val = [
+#('preparing'),
+#('out_for_delivery'),
+#('delivered')
+#]
+#cursor.executemany(sql, val)
+
+########################Insert multiple records ######################
+#sql = "INSERT INTO customers (name, address, phone) VALUES (%s, %s, %s)"
+#val = [
+#('najib', '15 Ashton place', '0789887334'),
+#('jerry', '12 china town', '0745277744'),
+#('garry', '03 roseville garden', '07766545432'),
+#('william', '88 primrose avenue', '07655432345'),
+#('johnson', '10 ashton view', '07655676567')
+#]
+#cursor.executemany(sql, val)
+
+########################Insert multiple records ######################
+#sql = "INSERT INTO orders (customer_id, courier_id, status_id) VALUES (%s, %s, %s)"
+#val = [
+#(3, 4)
+#]
+#cursor.executemany(sql, val)
+
+########################Insert multiple records ######################
+#sql = "INSERT INTO products_on_orders (order_id, product_id) VALUES (%s, %s)"
+#val = [
+#(3, 5),
+#(3, 5),
+#(3, 5)
+#]
+#cursor.executemany(sql, val)
+#
+########################Insert multiple records ######################
+#sql = "INSERT INTO order_status (order_id, status_id) VALUES (%s, %s)"
+#val = [
+#(2, 3)
+#]
+#cursor.executemany(sql, val)
+##
 #########################Insert Single record ###############
 #sql = "INSERT INTO products (name, price$) VALUES (%s, %s)"
 #val = ("espresso", 1.90)

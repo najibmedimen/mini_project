@@ -1,8 +1,9 @@
 import pymysql
 import os
 from dotenv import load_dotenv
-import query_function as fq
+import query_functions as fq
 import app_functions as fn
+import json
 
 # Load environment variables from .env file
 load_dotenv()
@@ -94,29 +95,29 @@ database = os.environ.get("mysql_db")
 
 
 
-print('\nOur Products are Given Below:\n')
-fq.display_products()
-
-user_input = input('\nChoose an Index to Update a Porduct:\n')
-product_name = input(f'\nSuggest a New Name for The Product.\n')
-product_price = input(f'\n Please Enter New Price for The Product.\n')
-if user_input:
-    if product_name:
-        if product_price:
-            query = f'UPDATE products SET name = "{product_name}", price$ = "{product_price}" \
-                    WHERE id = "{user_input}"'
-            fq.execute_query(query)
-        
-        else:
-            query = f'UPDATE products SET name = "{product_name}" WHERE id = "{user_input}"' 
-            fq.execute_query(query)
-    
-    elif product_price:
-        query = f'UPDATE products SET price$ = "{product_price}" WHERE id = "{user_input}"'
-        fq.execute_query(query)
-    
-    else:
-        pass
+#print('\nOur Products are Given Below:\n')
+#fq.display_products()
+#
+#user_input = input('\nChoose an Index to Update a Porduct:\n')
+#product_name = input(f'\nSuggest a New Name for The Product.\n')
+#product_price = input(f'\n Please Enter New Price for The Product.\n')
+#if user_input:
+#    if product_name:
+#        if product_price:
+#            query = f'UPDATE products SET name = "{product_name}", price$ = "{product_price}" \
+#                    WHERE id = "{user_input}"'
+#            fq.execute_query(query)
+#        
+#        else:
+#            query = f'UPDATE products SET name = "{product_name}" WHERE id = "{user_input}"' 
+#            fq.execute_query(query)
+#    
+#    elif product_price:
+#        query = f'UPDATE products SET price$ = "{product_price}" WHERE id = "{user_input}"'
+#        fq.execute_query(query)
+#    
+#    else:
+#        pass
 
 
 
@@ -156,3 +157,116 @@ if user_input:
 #    connection.commit()
 #    cursor.close()
 #    connection.close()
+
+#ef display_products():
+#   connection = pymysql.connect(
+#   host = host,
+#   user =user,
+#   password =password,
+#   database = database
+#   )
+#   
+#   cursor = connection.cursor()
+#   cursor.execute("SHOW 'columns' FROM 'products'")
+#   columns = cursor.description 
+#   result = [{columns[index][0]:column for index, column in enumerate(value)} for value in cursor.fetchall()]
+#
+#   print(result)
+    #myresult = cursor.fetchall()
+    #for x in myresult:
+    #    print(x)
+        #print(f'{[x[0]]}: name: {x[1].ljust(8)}   price$: {x[2]} ')
+
+
+    
+    #list =[]
+    #
+    #mydict = {}
+    #for x in myresult:
+    #    print(x)
+    #    mydict["order_id"] = x[0]
+    #    mydict["customer_name"] = x[1]
+    #    mydict["customer_address"] = x[2]
+    #    mydict["customer_phone"] = x[3]
+    #    mydict["courier_id"] = x[4]
+    #    mydict["order_status"] = x[5]
+    #    mydict["items"] = x[6]
+    #    list.append(mydict)
+    #    for item in list:
+    #        print(item)
+    #    
+
+#
+
+
+#sql = "INSERT INTO products_on_orders (order_id, product_id) VALUES (%s, %s)"
+#val = [
+#(3, 5),
+#(3, 5),
+#(3, 5)
+#]
+#cursor.executemany(sql, val)
+
+
+
+
+# PRINT orders with their IDs
+
+
+#GET user input for order ID
+
+
+#GET user input for customer name
+
+
+# GET user input for customer address
+
+
+# GET user input for customer phone number
+
+
+# PRINT products
+
+#GET user inputs for comma-separated list of product IDs
+CONVERT above user input to list of integers
+GET all couriers from couriers table
+PRINT couriers
+GET user input for courier ID
+UPDATE order in orders table
+
+
+
+
+
+
+
+
+
+
+
+
+#sql = "INSERT INTO products (name, price$) VALUES (%s, %s)"
+#val = ("espresso", 1.90)
+#cursor.execute(sql, val)
+
+#print('\nOur Products are Given Below:\n')
+#fn.csv_r_display('products.csv')
+#list = str(input ("Please Enter Product Indices Seaparated By Commas:\n"))
+#List = list.split(',')
+#product_order_list =[]
+#for item in List:
+#    product_order_list.append(int(item))
+#print(product_order_list)
+#print('\nOur Couriers are Given Below:\n')
+#fn.csv_r_display('couriers.csv')
+#courier_index = int(input(f'\n Please Select A Courier Index:\n'))
+#order_status = "preparing"
+#data_row_list = [customer_name,customer_address,customer_phone,courier_index,product_order_list,order_status]
+#fn.csv_appender('orders.csv', data_row_list)
+#print('\nOur Current Orders are Given Below:\n')
+#fn.csv_r_display('orders.csv')
+
+
+
+
+

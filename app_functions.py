@@ -125,9 +125,9 @@ Please Select From Options for The Orders Menu: \n
 Press 0:  Return to Main Menu
 Press 1:  Look at Orders Dictionary
 Press 2:  Create a New Order
-Press 3:  Update an Existing Order
-Press 4:  Further Updates on an Existing Order
-Press 5:  Delete an Existing Order
+Press 3:  Update Order Status
+Press 4:  Update an Order
+Press 5:  Delete an Order
 =====================================
 """)
 
@@ -147,6 +147,33 @@ More Options for Order Update sub-Menu: \n
 ======= Order Update Sub-Menu ====== \n
 Press 0:  Return to Orders Menu
 Press 1:  Update Another Order
+=====================================\n
+""")
+
+def print_order_delete_sub_menu():
+    print("""\n
+Options for Order Delete sub-Menu: \n
+======= Order Delete Sub-Menu ====== \n
+Press 0:  Return to Orders Menu
+Press 1:  Delete Another Order
+=====================================\n
+""")
+
+def print_order_status_sub_menu():
+    print("""\n
+More Options for Order Status Sub-Menu: \n
+======= Order Status Sub-Menu ====== \n
+Press 0:  Return to Orders Menu
+Press 1:  Update Another Order Status
+=====================================\n
+""")
+
+def print_new_order_menu():
+    print("""\n
+More Options for New Orders: \n
+======= New Order Sub-Menu ====== \n
+Press 0:  Return to Orders Menu
+Press 1:  Enter Another Order
 =====================================\n
 """)
 

@@ -114,6 +114,7 @@ couriers = file_opener("couriers.txt")
 #        return orders_list
 
 
+
 #Products
 #name,price($)
 #coke,1.10
@@ -123,3 +124,26 @@ couriers = file_opener("couriers.txt")
 #mocha,1.3
 #espresso,1.0
 #cafeno,1.5
+def display_orders():
+    connection = pymysql.connect(
+    host = host,
+    user =user,
+    password =password,
+    database = database
+    )
+    
+    cursor = connection.cursor()
+    cursor.execute("SELECT * FROM orders")
+    
+    myresult = cursor.fetchall()
+    my_list =[]
+    my_dict = {}
+    for x in myresult:
+        my_dict['order_id'] = x[0]
+        my_dict['name'] = x[1]  
+        my_dict['phone'] = x[2]
+    print(my_dict)
+
+    connection.commit()
+    cursor.close()
+    connection.close()
